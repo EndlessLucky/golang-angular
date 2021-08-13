@@ -24,7 +24,7 @@ export class TodoService {
 }
 
 export class Todo{
-  id: string | undefined;
-  message: string | undefined;
-  complete: boolean | undefined;
+  id: string = '';
+  message: string = '';
+  complete: boolean = false;
 }
