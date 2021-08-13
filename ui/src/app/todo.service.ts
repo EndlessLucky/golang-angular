@@ -1,9 +1,30 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
+
+  getTodoList() {
+    return this.httpClient.get(environment.gateway + '/todo');
+  }
+  addTodo(todo: Todo){
+    return this.httpClient.post(environment.gateway + '/todo', todo);
+  }
+  completeTodo(todo: Todo){
+    return this.httpClient.put(environment.gateway + '/todo', todo);
+  }
+  deleteTodo(todo: Todo){
+    return this.httpClient.delete(environment.gateway + '/todo/' + todo.id);
+  }
+}
+
+export class Todo{
+  id: string | undefined;
+  message: string | undefined;
+  complete: boolean | undefined;
 }
